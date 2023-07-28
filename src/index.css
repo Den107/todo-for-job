@@ -1,13 +1,376 @@
-body {
+* {
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  border: 0
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box
 }
+
+:focus, :active {
+  outline: none
+}
+
+a {
+  color: inherit
+}
+
+a:focus, a:active {
+  outline: none
+}
+
+nav, footer, header, aside {
+  display: block
+}
+
+html, body {
+  font-family: sans-serif;
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box
+}
+
+input, button, textarea {
+  font-family: inherit
+}
+
+input::-ms-clear {
+  display: none
+}
+
+button {
+  cursor: pointer
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0
+}
+
+a, a:visited, a:hover {
+  text-decoration: none
+}
+
+ul li {
+  list-style: none
+}
+
+img {
+  object-fit: cover;
+  vertical-align: top
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: 400
+}
+
+.popup {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00000080;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  overflow: hidden
+}
+
+.popup__form {
+  max-width: 500px;
+  background-color: #fff;
+  padding: 30px
+}
+
+.popup__form h2 {
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal
+}
+
+.popup__form input {
+  margin-top: 20px;
+  width: 100%;
+  padding: 5px;
+  color: #000;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: .12px;
+  border: 1px solid black;
+  border-radius: 5px
+}
+
+.popup__form input::placeholder {
+  color: #90a0b7;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: .12px
+}
+
+.popup__form textarea {
+  margin-top: 20px;
+  width: 100%;
+  height: 100px;
+  padding: 5px;
+  color: #000;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: .12px;
+  border: 1px solid black;
+  border-radius: 5px;
+  resize: none
+}
+
+.popup__form textarea::placeholder {
+  color: #90a0b7;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: .12px
+}
+
+.popup__form div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center
+}
+
+@media (max-width: 350px) {
+  .popup__form div {
+    flex-direction: column
+  }
+}
+
+.popup__form div label {
+  display: flex;
+  align-items: center
+}
+
+.popup__form div label input {
+  transform: translateY(-70%)
+}
+
+.popup__form div:last-child {
+  margin-top: 20px
+}
+
+.popup__form div:last-child button {
+  width: 100px;
+  height: 50px;
+  border-radius: 5px;
+  padding: 5px
+}
+
+.popup__form div:last-child button:hover {
+  opacity: .8
+}
+
+.popup__form div:last-child button:first-child {
+  background-color: #27ae60
+}
+
+.popup__form div:last-child button:last-child {
+  background-color: #f90000
+}
+
+@media (max-width: 350px) {
+  .popup__form div:last-child button:last-child {
+    margin-top: 10px
+  }
+}
+
+.todo__wrapper {
+  height: 100vh;
+  padding: 46px 35px 95px 43px
+}
+
+.todo__search input {
+  width: 200px;
+  padding: 5px;
+  color: #000;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: .12px
+}
+
+.todo__search input::placeholder {
+  color: #90a0b7;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: .12px
+}
+
+.todo__title {
+  margin-top: 60px;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal
+}
+
+.todo__title span {
+  color: #f3477a
+}
+
+.todo__title button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #884cb2;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 9px;
+  color: #fff;
+  transition: all .3s ease
+}
+
+.todo__title button:hover {
+  opacity: .9
+}
+
+.todo__list {
+  margin-top: 40px
+}
+
+.list__title {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: #1d262c
+}
+
+.list__todo {
+  margin-top: 30px
+}
+
+.list .todo {
+  display: flex;
+  justify-content: space-between;
+  padding: 22px 0
+}
+
+@media (max-width: 700px) {
+  .list .todo {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px
+  }
+}
+
+.list .todo:not(:last-child) {
+  border-bottom: .5px solid #e0e0e0
+}
+
+.list .todo h3 {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: #000;
+  cursor: pointer;
+  width: 300px;
+  height: 15px;
+  overflow: hidden
+}
+
+@media (max-width: 700px) {
+  .list .todo h3 {
+    width: 290px
+  }
+}
+
+.list .todo p {
+  width: 120px
+}
+
+@media (max-width: 700px) {
+  .list .todo p {
+    width: 100%;
+    text-align: center
+  }
+}
+
+.list .todo div {
+  width: 50px;
+  display: flex;
+  justify-content: space-between
+}
+
+.list .todo div button {
+  background-color: transparent
+}
+
+.list .todo__complete-button {
+  border-radius: 8.5px;
+  background: rgba(39, 174, 96, .2);
+  width: 77px;
+  height: 17px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -.068px;
+  color: #27ae60;
+  transition: all .3s ease
+}
+
+.list .todo__complete-button:hover {
+  background: rgba(39, 174, 96, .5)
+}
+
+.list .todo--complete h3 {
+  opacity: .2;
+  cursor: default
+}
+
+.list .todo--complete p {
+  opacity: .2
+}
+
+.list .todo--complete div {
+  opacity: 0
+}
+
+.list .todo--complete div button {
+  cursor: default
+}
+
+.list .todo--complete > button {
+  background: rgba(86, 204, 242, .2);
+  color: #56ccf2;
+  transition: all .3s ease
+}
+
+.list .todo--complete > button:hover {
+  background: rgba(86, 204, 242, .5)
+}
+
