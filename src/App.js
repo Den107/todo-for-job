@@ -4,15 +4,20 @@ import Title from "./components/Title";
 import Todo from "./components/Todo";
 import TodoComplete from "./components/TodoComplete";
 import {useSelector} from "react-redux";
+import FullTodo from "./components/FullTodo";
+import PopUpForEdit from "./components/PopUpForEdit";
 
 function App() {
     const todos = useSelector(state=>state.todos.todos)
     const todosComplete = useSelector(state=>state.todos.todosComplete)
+    const isOpen = useSelector(state=>state.todos.openFullTodo)
 
 
     return (
         <>
+            <PopUpForEdit/>
             <Popup/>
+            <FullTodo isOpen={isOpen}/>
             <div className="todo__wrapper">
 
                 <Search/>

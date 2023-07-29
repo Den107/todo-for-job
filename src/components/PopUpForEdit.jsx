@@ -1,39 +1,22 @@
 import React, {useState} from 'react';
+import {changePopup, changePopupForEdit} from "../features/todos/todosSlice";
 import {useDispatch, useSelector} from "react-redux";
-import {changePopup, addTodo} from "../features/todos/todosSlice";
-import {v4 as uuidv4} from 'uuid';
 
-const Popup = () => {
-    const isOpen = useSelector(state => state.todos.openPopup)
+const PopUpForEdit = () => {
     const dispatch = useDispatch()
-    const [title, setTitle] = useState('')
-    const [description, setDescription] = useState('')
-    const [importance, setImportance] = useState('')
+    const isOpen = useSelector(state=>state.todos.openPopupForEdit)
+    const obj = useSelector(state=>state.todos.displayForEdit)
+
+    console.log(obj.description, obj.title )
+//todo понять причину почему не записываются данные в usestate
+    const [importance, setImportance] = useState(obj.importance)
+    const [title, setTitle] = useState(obj.title)
+    const [description, setDescription] = useState(obj.description)
 
     const changeImportance = (e) => {
         setImportance(e.target.value)
     }
-
-    const createTodo = () => {
-        let todo
-        if(title && description && importance){
-             todo = {
-                id: uuidv4(),
-                title, description, importance
-            }
-        }else {
-            window.alert('Заполните все поля!!')
-            return
-        }
-
-        dispatch(addTodo(todo))
-        setTitle('')
-        setDescription('')
-        setImportance('')
-        dispatch(changePopup(false))
-    }
-
-
+    console.log(title, description, importance)
     return (
         <div className="todo__popup popup" style={isOpen ? {display: 'flex'} : {display: 'none'}}>
 
@@ -52,12 +35,12 @@ const Popup = () => {
                                                  onChange={e => changeImportance(e)}/></label>
                 </div>
                 <div>
-                    <button onClick={createTodo}>Сохранить</button>
-                    <button onClick={() => dispatch(changePopup(false))}>Отмена</button>
+                    <button >Сохранить</button>
+                    <button onClick={() => dispatch(changePopupForEdit(false))}>Отмена</button>
                 </div>
             </div>
         </div>
     );
 };
 
-export default Popup;
+export default PopUpForEdit;

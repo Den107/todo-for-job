@@ -1,14 +1,31 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
-import {deleteTodo} from "../features/todos/todosSlice";
+import {
+    changeDisplayFullTodo,
+    changeFullTodo,
+    changePopup,
+    changePopupForEdit,
+    deleteTodo,
+    editTodo
+} from "../features/todos/todosSlice";
 
 const Todo = ({importance, title, description, id}) => {
     const dispatch = useDispatch()
 
-    const removeTodo = ()=>{
-        if(window.confirm(`Действительно хотите удалить задачу ${title}?`)){
+    const removeTodo = () => {
+        if (window.confirm(`Действительно хотите удалить задачу ${title}?`)) {
             dispatch(deleteTodo(id))
         }
+    }
+
+    const editTodoFunc = () => {
+        dispatch(changePopupForEdit(true))
+        dispatch(editTodo({importance, title, description, id}))
+    }
+
+    const openFullTodo = () => {
+        dispatch(changeFullTodo(true))
+        dispatch(changeDisplayFullTodo({title, description}))
     }
 
     const chooseImportance = () => {
@@ -42,7 +59,7 @@ const Todo = ({importance, title, description, id}) => {
 
     return (
         <div className="list__todo todo">
-            <h3>
+            <h3 onClick={openFullTodo}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="9" height="10" viewBox="0 0 9 10"
                      fill="none">
                     <ellipse cx="4.5" cy="5" rx="4.5" ry="5" fill="url(#paint0_linear_1_168)"
@@ -69,7 +86,7 @@ const Todo = ({importance, title, description, id}) => {
             {chooseImportance()}
             <div>
                 <button onClick={removeTodo}><i className="fa-solid fa-trash" style={{color: '#cd1326'}}></i></button>
-                <button><i className="fa-solid fa-pen-to-square" style={{color: '#1fbda2'}}></i></button>
+                <button onClick={editTodoFunc}><i className="fa-solid fa-pen-to-square" style={{color: '#1fbda2'}}></i></button>
             </div>
         </div>
     );
